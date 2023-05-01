@@ -39,6 +39,7 @@ namespace AdvertisementApp.Business.Services
             {
                 var createdEntity = mapper.Map<T>(dto);
                 await uow.GetRepository<T>().CreateAsync(createdEntity);
+                await uow.SaveChangesAsync();
                 return new Response<CreateDto>(ResponseType.Success, dto);
             }
             return new Response<CreateDto>(dto, result.ConvertToCustomValidationError());
@@ -70,22 +71,24 @@ namespace AdvertisementApp.Business.Services
                 return new Response<IDto>(ResponseType.NotFound, $"{id} idsine sahip data bulunamadı");
 
             uow.GetRepository<T>().Remove(data);
+            await uow.SaveChangesAsync();
             return new Response(ResponseType.Success);
         }
 
         public async Task<IResponse<UpdateDto>> UpdateAsync(UpdateDto dto)
         {
             var result = updateDtoValidator.Validate(dto);
-            
+
             if (result.IsValid)
             {
                 var unchangedData = await uow.GetRepository<T>().FindAsync(dto.Id);
-                
+
                 if (unchangedData is null)
                     return new Response<UpdateDto>(ResponseType.NotFound, $"{dto.Id} idsine sahip data bulunamadı");
-                
+
                 var entity = mapper.Map<T>(dto);
                 uow.GetRepository<T>().Update(entity, unchangedData);
+                await uow.SaveChangesAsync();
                 return new Response<UpdateDto>(ResponseType.Success, dto);
             }
             return new Response<UpdateDto>(dto, result.ConvertToCustomValidationError());
