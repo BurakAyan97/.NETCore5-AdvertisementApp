@@ -23,15 +23,33 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" asp-action="SignUp" asp-controller="Account">Kayıt Ol</a></li>
-                    <li class="nav-item"><a class="nav-link" asp-action="SignIn" asp-controller="Account">Giriş Yap</a></li>
-                    <li class="nav-item"><a class="nav-link" asp-action="HumanResource" asp-controller="Home">İnsan Kaynakları</a></li>
+                    @{
+                        if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item"><a class="nav-link" asp-action="LogOut" asp-controller="Account">Çıkış Yap</a></li>
+                            @if (User.IsInRole("Member"))
+                            {
+                                <li class="nav-item"><a class="nav-link" asp-action="HumanResource" asp-controller="Home">İnsan Kaynakları</a></li>
+                            }
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item"><a class="nav-link" asp-action="Index" asp-controller="Advertisement">İş ilanları</a></li>
+                            }
+                        }
+                        else
+                        {
+                            <li class="nav-item"><a class="nav-link" asp-action="SignIn" asp-controller="Account">Giriş Yap</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-action="SignUp" asp-controller="Account">Kayıt Ol</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-action="HumanResource" asp-controller="Home">İnsan Kaynakları</a></li>
+
+                        }
+                    }
                 </ul>
             </div>
         </div>
     </nav>
     <!-- Header-->
-    
+
     @RenderBody()
 
     <!-- Footer-->

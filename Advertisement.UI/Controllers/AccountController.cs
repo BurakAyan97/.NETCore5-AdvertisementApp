@@ -102,5 +102,10 @@ namespace Advertisement.UI.Controllers
             ModelState.AddModelError("Kullanıcı adı veya şifre hatalı", result.Message);
             return View(dto);
         }
+
+        public async IActionResult LogOut()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        }
     }
 }
