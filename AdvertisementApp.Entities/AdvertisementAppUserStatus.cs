@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 namespace AdvertisementApp.Entities
 {
-    public class Advertisement : BaseEntity
+    public class AdvertisementAppUserStatus:BaseEntity
     {
-        public string Title { get; set; }
-        public bool Status { get; set; }
-        public string Description { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public string Definition { get; set; }
 
         //Nav Props
         public List<AdvertisementAppUser> AdvertisementAppUsers { get; set; }

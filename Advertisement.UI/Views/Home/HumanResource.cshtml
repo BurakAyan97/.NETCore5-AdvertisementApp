@@ -1,0 +1,38 @@
+﻿@model List<AdvertisementApp.DTOs.AdvertisementDtos.AdvertisementListDto>
+@{
+    Layout = "_Layout";
+}
+
+<div class="container my-3">
+    <div class="accordion" id="accordionExample">
+        @for (int i = 0; i < Model?.Count; i++)
+        {
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne-@Model[i].Id">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="@(i==0)" aria-controls="collapse-@Model[i].Id">
+                        @Model[i].Title
+                    </button>
+                </h2>
+                <div id="collapse-@Model[i].Id" class="accordion-collapse collapse @(i==0?"show":"")" aria-labelledby="heading-@Model[i].Id" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        @Model[i].Description
+
+                        <div>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a href="#">Başvur</a>
+                            }
+                            else
+                            {
+                                <div class="alert alert-light text-center lead">
+                                    Başvuru yapabilmeniz için kayıt olmanız gerekmektedir. <a href="#">Başvur</a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
