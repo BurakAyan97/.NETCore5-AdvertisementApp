@@ -4,35 +4,35 @@
 }
 
 <form class="w-75 mx-auto p-3" asp-action="Send" asp-controller="Advertisement" method="post" enctype="multipart/form-data">
-    <input type="hidden" asp-for="@Model.AdvertisementId" />
-    <input type="hidden" asp-for="@Model.AppUserId" />
+    <input type="hidden" asp-for="AdvertisementId" />
+    <input type="hidden" asp-for="AppUserId" />
 
-    @if (ViewBag.GenderId == (int)GenderType.Erkek)
+    @if (ViewBag.GenderId == (int)Advertisement.Common.Enums.GenderType.Erkek)
     {
         <div class="mb-3">
             <label>Askerlik Durumu :</label>
-            <select onchange="setInputVisibility()" asp-for="@Model.MilitaryStatusId" asp-items="@ViewBag.MilitaryStatus" class="form-select">
+            <select onchange="setInputVisibility()" asp-for="MilitaryStatusId" asp-items="@ViewBag.MilitaryStatus" class="form-select">
             </select>
         </div>
 
         <div id="dateDiv" class="mb-3" style="display:none">
             <label>Tecil Tarihi</label>
-            <input type="date" asp-for="@Model.EndDate" class="form-control" />
+            <input type="date" asp-for="EndDate" class="form-control" />
         </div>
     }
     else
     {
-        <input type="hidden" asp-for="@Model.MilitaryStatusId" value="@((int)MilitaryStatusType.Muaf)" />
+        <input type="hidden" asp-for="MilitaryStatusId" value="@((int)Advertisement.Common.Enums.MilitaryStatusType.Muaf)" />
     }
 
     <div class="mb-3">
         <label> İş deneyiminiz(yıl olarak ):</label>
-        <input type="number" asp-for="@Model.WorkExperience" class="form-control" />
+        <input type="number" asp-for="WorkExperience" class="form-control" />
     </div>
 
     <div class="mb-3">
         <label> Cv : </label>
-        <input type="file" asp-for="@Model.CvFile" class="form-control" />
+        <input type="file" asp-for="CvFile  " class="form-control" />
     </div>
 
     <div class="mb-3">

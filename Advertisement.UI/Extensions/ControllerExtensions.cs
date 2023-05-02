@@ -5,19 +5,23 @@ namespace Advertisement.UI.Extensions
 {
     public static class ControllerExtensions
     {
-        public static IActionResult ResponseRedirectAction<T>(this Controller controller, IResponse<T> response, string actionName)
+        public static IActionResult ResponseRedirectAction<T>(this Controller controller, IResponse<T> response, string actionName, string controllerName = "")
         {
             if (response.ResponseType == ResponseType.NotFound)
                 return controller.NotFound();
+
             if (response.ResponseType == ResponseType.ValidationError)
             {
                 foreach (var error in response.ValidationErrors)
-                {
                     controller.ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
-                }
+                
                 return controller.View(response.Data);
             }
-            return controller.RedirectToAction(actionName);
+
+            if (string.IsNullOrEmpty(controllerName))
+                return controller.RedirectToAction(actionName);
+            else
+                return controller.RedirectToAction(actionName, controllerName);
         }
 
         public static IActionResult ResponseView<T>(this Controller controller, IResponse<T> response)

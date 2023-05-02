@@ -1,5 +1,7 @@
 ﻿using Advertisement.UI.Extensions;
 using AdvertisementApp.Business.Interfaces;
+using AdvertisementApp.Business.Services;
+using AdvertisementApp.DTOs.AdvertisementDtos;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 

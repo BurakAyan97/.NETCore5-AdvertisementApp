@@ -103,9 +103,10 @@ namespace Advertisement.UI.Controllers
             return View(dto);
         }
 
-        public async IActionResult LogOut()
+        public async Task<IActionResult> LogOut()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Index", "Home");
         }
     }
 }

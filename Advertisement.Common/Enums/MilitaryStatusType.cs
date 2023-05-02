@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace Advertisement.Common.Enums
 {
-    public enum AdvertisementAppUserStatusType
+    public enum MilitaryStatusType
     {
-        Basvurdu = 1,
-        Mulakat = 2,
-        Olumlu = 3,
-        Olumsuz = 4,
+        Yapildi=1,
+        Tecilli=2,
+        Muaf=3
     }
 }

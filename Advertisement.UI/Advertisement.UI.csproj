@@ -16,4 +16,8 @@
     <ProjectReference Include="..\AdvertisementApp.Bussiness\AdvertisementApp.Business.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\cvFiles\" />
+  </ItemGroup>
+
 </Project>

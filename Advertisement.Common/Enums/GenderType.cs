@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace Advertisement.Common.Enums
 {
-    public enum AdvertisementAppUserStatusType
+    public enum GenderType
     {
-        Basvurdu = 1,
-        Mulakat = 2,
-        Olumlu = 3,
-        Olumsuz = 4,
+        Erkek=1,
+        Kadin=2  
     }
 }

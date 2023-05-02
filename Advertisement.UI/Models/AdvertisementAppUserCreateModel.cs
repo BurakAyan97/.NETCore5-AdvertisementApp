@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Advertisement.Common.Enums;
+using Microsoft.AspNetCore.Http;
 using System;
 
 namespace Advertisement.UI.Models

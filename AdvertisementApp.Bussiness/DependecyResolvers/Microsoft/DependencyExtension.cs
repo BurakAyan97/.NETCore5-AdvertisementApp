@@ -4,6 +4,7 @@ using AdvertisementApp.Business.Services;
 using AdvertisementApp.Business.ValidationRules;
 using AdvertisementApp.DataAccess.Context;
 using AdvertisementApp.DataAccess.UnitOfWork;
+using AdvertisementApp.DTOs.AdvertisementAppUserCreateDtos;
 using AdvertisementApp.DTOs.AdvertisementDtos;
 using AdvertisementApp.DTOs.AppUserDtos;
 using AdvertisementApp.DTOs.GenderDtos;
@@ -36,6 +37,7 @@ namespace AdvertisementApp.Business.DependecyResolvers.Microsoft
             services.AddScoped<IAdvertisementService, AdvertisementService>();
             services.AddScoped<IAppUserService, AppUserService>();
             services.AddScoped<IGenderService, GenderService>();
+            services.AddScoped<IAdvertisementAppUserService, AdvertisementAppUserService>();
 
             services.AddTransient<IValidator<ProvidedServiceCreateDto>, ProvidedServiceCreateDtoValidator>();
             services.AddTransient<IValidator<ProvidedServiceUpdateDto>, ProvidedServiceUpdateDtoValidator>();
@@ -46,6 +48,7 @@ namespace AdvertisementApp.Business.DependecyResolvers.Microsoft
             services.AddTransient<IValidator<AppUserLoginDto>, AppUserLoginDtoValidator>();
             services.AddTransient<IValidator<GenderCreateDto>, GenderCreateDtoValidator>();
             services.AddTransient<IValidator<GenderUpdateDto>, GenderUpdateDtoValidator>();
+            services.AddTransient<IValidator<AdvertisementAppUserCreateDto>, AdvertisementAppUserCreateDtoValidator>();
         }
     }
 }
